@@ -21,3 +21,14 @@ This repository contains my complete hands-on DevOps journey.
 Project 01 - Docker to Kubernetes
 
 This repository will grow as I complete more projects.
+
+## Docker Troubleshooting Lab 01
+
+### Learned
+
+- docker ps
+- docker ps -a
+- docker logs
+- Exit Code 0
+- Exit Code 127
+- Root Cause Analysis
