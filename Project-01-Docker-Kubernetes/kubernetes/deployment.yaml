@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hverse-web
+
+spec:
+  replicas: 3
+
+  selector:
+    matchLabels:
+      app: hverse-web
+
+  template:
+    metadata:
+      labels:
+        app: hverse-web
+
+    spec:
+      containers:
+      - name: web
+        image: hverse-web:v1
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 80
