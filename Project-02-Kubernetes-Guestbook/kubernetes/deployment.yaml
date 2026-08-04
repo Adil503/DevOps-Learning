@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: guestbook
+  namespace: guestbook
+  labels:
+    app: guestbook-web
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: guestbook-web
+  template:
+    metadata:
+      labels:
+        app: guestbook-web
+    spec:
+      containers:
+      - name: guestbook
+        image: guestbook:v1
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 80
