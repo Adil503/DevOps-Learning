@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: hverse-project04
+
+spec:
+  replicas: 3
+
+  selector:
+    matchLabels:
+      app: hverse-project04
+
+  template:
+    metadata:
+      labels:
+        app: hverse-project04
+
+    spec:
+      containers:
+        - name: web
+          image: hverse-project04:v1
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 80
+          envFrom:
+            - configMapRef:
+                name: hverse-project04-config
+            - secretRef:
+                name: hverse-project04-secret

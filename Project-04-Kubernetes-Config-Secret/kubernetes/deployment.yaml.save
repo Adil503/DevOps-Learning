@@ -1,0 +1,17 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: hverse-peorject04
+
+spec:
+  replicas: 3
+
+  selector:
+    matchlabels:
+      app: hverse-project04
+
+  templet:
+    metadata:
+        labels:
+
