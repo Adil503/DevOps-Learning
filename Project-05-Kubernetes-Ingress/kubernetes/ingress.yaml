@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: hverse-project05-ingress
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: hverse.local
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: hverse-project05-svc
+                port:
+                  number: 80
