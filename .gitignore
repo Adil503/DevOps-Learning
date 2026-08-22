@@ -1,3 +1,6 @@
 *.log
 .env
 *.tmp
+minikube-linux-amd64
+*.iso
+*.img

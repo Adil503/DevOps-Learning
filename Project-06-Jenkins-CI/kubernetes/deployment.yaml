@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hverse-jenkins
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: hverse-jenkins
+  template:
+    metadata:
+      labels:
+        app: hverse-jenkins
+    spec:
+      containers:
+        - name: web
+          image: adil503/hverse-jenkins:v1
+          ports:
+            - containerPort: 80
