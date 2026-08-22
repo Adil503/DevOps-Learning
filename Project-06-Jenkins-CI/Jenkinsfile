@@ -1,0 +1,26 @@
+pipeline {
+
+    agent any
+
+    stages {
+
+        stage('Checkout') {
+            steps {
+                echo 'Checking out source code...'
+            }
+        }
+
+        stage('Docker Build') {
+            steps {
+                sh 'docker build -f Project-06-Jenkins-CI/docker/Dockerfile -t hverse-jenkins:v2 Project-06-Jenkins-CI'
+            }
+        }
+
+        stage('Docker Test') {
+            steps {
+                sh 'docker images hverse-jenkins'
+            }
+        }
+
+    }
+}
