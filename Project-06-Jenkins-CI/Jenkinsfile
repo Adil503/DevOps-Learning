@@ -12,13 +12,36 @@ pipeline {
 
         stage('Docker Build') {
             steps {
-                sh 'docker build -f Project-06-Jenkins-CI/docker/Dockerfile -t hverse-jenkins:v2 Project-06-Jenkins-CI'
+                sh '''
+                    docker build \
+                    -f Project-06-Jenkins-CI/docker/Dockerfile \
+                    -t adil503/hverse-jenkins:v2 \
+                    Project-06-Jenkins-CI
+                '''
             }
         }
 
         stage('Docker Test') {
             steps {
-                sh 'docker images hverse-jenkins'
+                sh 'docker images adil503/hverse-jenkins'
+            }
+        }
+
+        stage('Docker Push') {
+            steps {
+                withCredentials([
+                    usernamePassword(
+                        credentialsId: 'dockerhub',
+                        usernameVariable: 'DOCKER_USERNAME',
+                        passwordVariable: 'DOCKER_PASSWORD'
+                    )
+                ]) {
+                    sh '''
+                        echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+                        docker push adil503/hverse-jenkins:v2
+                        docker logout
+                    '''
+                }
             }
         }
 
