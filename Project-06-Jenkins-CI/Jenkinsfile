@@ -44,6 +44,14 @@ pipeline {
                 }
             }
         }
-
+	stage('Deploy to Kubernetes') {
+   	    steps {
+		        sh '''
+		            kubectl apply -f Project-06-Jenkins-CI/kubernetes/deployment.yaml
+		            kubectl apply -f Project-06-Jenkins-CI/kubernetes/service.yaml
+		            kubectl rollout status deployment/hverse-jenkins
+		        '''
+		    }
+		}
     }
 }
